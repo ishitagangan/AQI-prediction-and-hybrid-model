@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AQI Predictor</title>
+
+  <style>
+    body {
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      font-family: Arial;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      width: 350px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    select, button {
+      padding: 10px;
+      width: 90%;
+      margin: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    img {
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🌍 AQI Predictor using Hybrid ML</h1>
+
+<div class="card">
+  <h3>Select City</h3>
+  <select id="city">
+    <option>Select City</option>
+  </select>
+
+  <button onclick="predictAQI()">Predict AQI</button>
+</div>
+
+<div class="card" id="output" style="display:none;">
+  <h2 id="result"></h2>
+  <h3 id="category"></h3>
+  <img id="graphImage" width="320" />
+</div>
+
+<script>
+/* -------- Load Cities from CSV -------- */
+fetch("/static/city_day.csv")
+  .then(res => res.text())
+  .then(data => {
+    let rows = data.split("\n");
+    let cities = new Set();
+
+    for (let i = 1; i < rows.length; i++) {
+      let cols = rows[i].split(",");
+      if (cols[0]) cities.add(cols[0].trim());
+    }
+
+    let dropdown = document.getElementById("city");
+    cities.forEach(city => {
+      let option = document.createElement("option");
+      option.value = city;
+      option.textContent = city;
+      dropdown.appendChild(option);
+    });
+  });
+
+
+/* -------- Call Flask Backend -------- */
+function predictAQI() {
+
+  let city = document.getElementById("city").value;
+
+  if(city === "Select City"){
+    alert("Please select a city first!");
+    return;
+  }
+
+  fetch("/predict", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ city: city })
+  })
+  .then(res => res.json())
+  .then(data => {
+
+    let aqi = data.aqi;
+    let category = "";
+    let color = "";
+
+    if (aqi <= 50) { category="Good"; color="green"; }
+    else if (aqi <= 100) { category="Moderate"; color="orange"; }
+    else if (aqi <= 200) { category="Poor"; color="red"; }
+    else { category="Very Unhealthy"; color="purple"; }
+
+    document.getElementById("output").style.display = "block";
+    document.getElementById("result").innerText = "Predicted AQI: " + aqi;
+
+    let cat = document.getElementById("category");
+    cat.innerText = "Air Quality: " + category;
+    cat.style.color = color;
+
+    // 🔥 Load matplotlib graph image from Flask
+    document.getElementById("graphImage").src = data.graph + "?t=" + new Date().getTime();
+
+  });
+}
+</script>
+
+</body>
+</html>
