@@ -6,7 +6,7 @@ Here is a professional README description you can use for your GitHub repository
 
 Air pollution is one of the most critical environmental challenges affecting public health and sustainability. This project focuses on predicting the **Air Quality Index (AQI)** using Machine Learning techniques and a **Hybrid Prediction Model** to improve forecasting accuracy.
 
-The system analyzes historical air quality data, performs data preprocessing and feature engineering, and applies multiple machine learning algorithms to predict future AQI values. By combining the strengths of different models, the hybrid approach aims to provide more reliable and accurate predictions. AQI forecasting is widely recognized as an important application of machine learning for environmental monitoring and public health decision-making. ([Nature][1])
+The system analyzes historical air quality data, performs data preprocessing and feature engineering, and applies multiple machine learning algorithms to predict future AQI values. By combining the strengths of different models, the hybrid approach aims to provide more reliable and accurate predictions. AQI forecasting is widely recognized as an important application of machine learning for environmental monitoring and public health decision-making. 
 
 ---
 
@@ -20,7 +20,7 @@ The system analyzes historical air quality data, performs data preprocessing and
 * Compare model performance using evaluation metrics.
 * Provide accurate AQI forecasts to support environmental awareness.
 
----
+
 
 ## 🛠️ Technologies Used
 
@@ -33,7 +33,7 @@ The system analyzes historical air quality data, performs data preprocessing and
 * Machine Learning Algorithms
 * Jupyter Notebook
 
----
+
 
 ## 📊 Features
 
@@ -49,7 +49,7 @@ The system analyzes historical air quality data, performs data preprocessing and
   * Root Mean Squared Error (RMSE)
   * R² Score
 
----
+
 
 ## 🔍 Workflow
 
@@ -62,7 +62,6 @@ The system analyzes historical air quality data, performs data preprocessing and
 7. Performance Evaluation
 8. AQI Prediction & Visualization
 
----
 
 ## 📈 Expected Outcomes
 
@@ -71,7 +70,7 @@ The system analyzes historical air quality data, performs data preprocessing and
 * Insights for environmental monitoring and pollution management.
 * A scalable framework that can be extended to real-time AQI forecasting.
 
----
+
 
 ## 🚀 Future Enhancements
 
