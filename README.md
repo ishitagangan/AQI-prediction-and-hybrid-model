@@ -86,6 +86,7 @@ The system analyzes historical air quality data, performs data preprocessing and
 Contributions, suggestions, and improvements are welcome. Feel free to fork the repository and submit pull requests.
 
 Developed by:Ishita Gangan and group
+
 Domain: Machine Learning | Environmental Analytics | AQI Forecasting 🌱
 
 
